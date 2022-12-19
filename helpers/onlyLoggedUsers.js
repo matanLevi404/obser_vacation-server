@@ -1,5 +1,5 @@
 const onlyLoggedUsers = (req, res, next) => {
-  console.log(req.session, "from middleware");
+  console.log(req.session.Session, "from middleware");
   if (req.session.user_id && req.session.user_id != 1) {
     next();
   } else {

@@ -51,6 +51,8 @@ router.post("/", async (req, res) => {
 
     req.session.user_id = user.id;
 
+    console.log(req.session.user_id, "let see setter");
+
     res.send({ isAdmin: false, msg: "user logged successfully" });
   } catch (err) {
     console.log(err);

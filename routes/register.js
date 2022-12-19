@@ -13,7 +13,9 @@ router.post("/", async (req, res) => {
 
   try {
     // checks if username allready exists
-    const users = await SQL(`SELECT * FROM obser_vacation.users;`);
+    const users = await SQL(
+      `SELECT * FROM ${process.env.DATABASE_NAME}.users;`
+    );
     if (users.find((u) => u.username == username)) {
       return res.status(500).send({ err: "username allready taken" });
     }

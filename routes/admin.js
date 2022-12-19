@@ -88,6 +88,8 @@ router.put("/update", onlyAdminUsers, async (req, res) => {
   try {
     const { vac_id, start, end, price } = req.body;
 
+    console.log(req.body);
+
     if (!vac_id || !start || !end || !price) {
       return res.status(500).send({ err: "missing some data" });
     }

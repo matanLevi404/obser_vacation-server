@@ -10,7 +10,9 @@ router.post("/", async (req, res) => {
       return res.status(500).send({ err: "missing username or password" });
     }
 
-    const users = await SQL(`SELECT * FROM obser_vacation.users;`);
+    const users = await SQL(
+      `SELECT * FROM ${process.env.DATABASE_NAME}.users;`
+    );
 
     const user = users.find((u) => u.username == username);
 
@@ -27,7 +29,7 @@ router.post("/", async (req, res) => {
               username,
               cast(aes_decrypt(password, "admin_key") AS CHAR(100)) AS password,
               role
-              FROM obser_vacation.users
+              FROM ${process.env.DATABASE_NAME}.users
               WHERE username = "${username}";
         `);
 

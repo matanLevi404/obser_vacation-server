@@ -7,10 +7,12 @@ const { SQL } = require("../dbconfig");
 router.get("/", onlyLoggedUsers, async (req, res) => {
   try {
     const user_and_vac = await SQL(
-      `SELECT * FROM obser_vacation.user_and_vac;`
+      `SELECT * FROM ${process.env.DATABASE_NAME}.user_and_vac;`
     );
 
-    const vacations = await SQL(`SELECT * FROM obser_vacation.vacations; `);
+    const vacations = await SQL(
+      `SELECT * FROM ${process.env.DATABASE_NAME}.vacations; `
+    );
 
     const follow = [];
     const vacList = [];
@@ -50,12 +52,14 @@ router.put("/", onlyLoggedUsers, async (req, res) => {
       return res.status(500).send({ err: "missing some data" });
     }
 
-    const vacations = await SQL(`SELECT * FROM obser_vacation.vacations;`);
+    const vacations = await SQL(
+      `SELECT * FROM ${process.env.DATABASE_NAME}.vacations;`
+    );
 
     const vac = vacations.find((v) => v.id == vac_id);
 
     const exsits = await SQL(
-      `SELECT * FROM obser_vacation.user_and_vac WHERE user_id = ${req.session.user_id} AND vac_id = ${vac_id};`
+      `SELECT * FROM ${process.env.DATABASE_NAME}.user_and_vac WHERE user_id = ${req.session.user_id} AND vac_id = ${vac_id};`
     );
 
     if (exsits.length == 0) {

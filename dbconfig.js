@@ -1,10 +1,10 @@
 const mysql = require("mysql");
 
 const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "gaSZdEEfTHYUJ120iokLp_O%01R",
-  database: "obser_vacation",
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE_NAME,
   timezone: "utc",
 });
 

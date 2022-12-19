@@ -35,6 +35,8 @@ app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
 app.use("/admin", require("./routes/admin"));
 
-app.listen(process.env.PORT || 1002, () => {
-  console.log("Server is up and running");
+const port = process.env.PORT || 1001;
+
+app.listen(port, () => {
+  console.log("Server is up and running on port: " + port);
 });

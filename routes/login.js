@@ -50,6 +50,7 @@ router.post("/", async (req, res) => {
     console.log(user.id);
 
     req.session.user_id = user.id;
+    req.session.save();
 
     console.log(req.session.user_id, "let see setter");
 

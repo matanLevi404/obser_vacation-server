@@ -1,4 +1,5 @@
 const onlyLoggedUsers = (req, res, next) => {
+  console.log(req.session.user_id);
   if (req.session) {
     next();
   } else {

@@ -47,6 +47,8 @@ router.post("/", async (req, res) => {
       res.status(500).send({ err: `Wrong username or password` });
     }
 
+    console.log(user.id);
+
     req.session.user_id = user.id;
 
     res.send({ isAdmin: false, msg: "user logged successfully" });
